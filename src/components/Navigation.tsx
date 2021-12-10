@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Navigation() {
+export const Navigation = () => {
     return(
         <nav className='nav'>
             <div><a>Profile</a></div>

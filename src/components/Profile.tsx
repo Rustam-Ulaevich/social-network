@@ -1,15 +1,15 @@
 import React from "react";
 
-export  function Profile() {
+export  const Profile = () => {
     return(
         <div className='content'>
             <div>
-                <img src='https://срочный-выкуп-авто-в-волгограде.рф/wp-content/uploads/2019/12/photo-1457201099140-5a4cda31de82.jpg'/>
+                <img src='https://wallpaperscave.ru/images/thumbs/wp-preview/800x500/18/03-30/earth-ocean-35311.jpg'/>
             </div>
             <div>ava+description</div>
             <div>
                 My posts
-                <div> 
+                <div>
                     New posts
                 </div>
                 <div>
