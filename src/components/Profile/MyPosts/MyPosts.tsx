@@ -9,7 +9,8 @@ export const MyPosts = () => {
                 New posts
             </div>
             <div className={s.post}>
-                <Post/>
+                <Post message='Hey, dude, when are you going to give me my money back?' likesCount={154} />
+                <Post message='Fuck you! Do not I know you?' likesCount={6241}/>
             </div>
-        </div>)
+               </div>)
 }
