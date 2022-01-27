@@ -25,7 +25,8 @@ function App() {
                 </Routes>
             </div>
         </div>
-    </BrowserRouter>)
+    </BrowserRouter>
+    )
 }
 
 export default App;
