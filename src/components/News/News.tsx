@@ -1,8 +1,8 @@
 import React from "react";
-import s from 'News.module.css'
+import s from './News.module.css'
 
 export function News() {
-    return <div>
-        News
+    return <div className={s.content}>
+        Newsssssssssssssssssssss
     </div>
 }
