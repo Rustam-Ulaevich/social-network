@@ -1,17 +1,17 @@
 import React from "react";
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {PostDataType} from "../../Redux/state";
 
-export  const Profile = () => {
-    return(
-        <div>
-            <div>
-                <img src='https://wallpaperscave.ru/images/thumbs/wp-preview/800x500/18/03-30/earth-ocean-35311.jpg'/>
-            </div>
-            <div>ava+description</div>
-            <div>
-                <MyPosts/>
-            </div>
-        </div>
-    )
+type ProfileType = {
+    postData: Array<PostDataType>
+}
+
+
+export  const Profile = (props: ProfileType) => {
+    return <div>
+        <ProfileInfo />
+        <MyPosts postData={props.postData}/>
+    </div>
 }

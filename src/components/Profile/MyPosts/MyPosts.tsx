@@ -1,16 +1,27 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostDataType} from "../../../Redux/state";
 
-export const MyPosts = () => {
+
+type PropsType = {
+    postData: Array<PostDataType>
+}
+
+export const MyPosts = (props: PropsType) => {
+
+    let postElements = props.postData.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+
     return (<div className={s.post}>
-            My posts
-            <div>
-                New posts
-            </div>
-            <div className={s.post}>
-                <Post message='Hey, dude, when are you going to give me my money back?' likesCount={154} />
-                <Post message='Fuck you! Do not I know you?' likesCount={6241}/>
-            </div>
-               </div>)
+        <h3>My posts</h3>
+        <div>
+            <textarea/>
+        </div>
+        <div>
+            <button>Add post</button>
+        </div>
+        <div className={s.post}>
+            {postElements}
+        </div>
+    </div>)
 }
