@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import s from './Navigation.module.css';
-
+import {Friends} from "./Friends";
+import {DialogsPageType} from "../../Redux/state";
 
 
 export function  Navigation() {
@@ -21,6 +22,9 @@ export function  Navigation() {
             </div>
             <div className={s.item}>
                 <NavLink to='../Settings' className = { navData => navData.isActive ? s.active : s.item }>Settings</NavLink>
+            </div>
+            <div>
+                <Friends/>
             </div>
         </nav>
     )

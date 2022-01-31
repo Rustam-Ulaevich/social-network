@@ -3,6 +3,7 @@ import s from './Post.module.css'
 
 
 type PropsType = {
+    id: number
     message: string
     likesCount: number
 }

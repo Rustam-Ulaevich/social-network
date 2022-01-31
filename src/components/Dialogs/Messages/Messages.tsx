@@ -4,7 +4,7 @@ import {MessagesDataType} from "../../../Redux/state";
 
 
 export function Messages(props: MessagesDataType) {
-    return <div className={s.message}>{props.message}</div>
+    return <div className={s.message}>***{props.message}</div>
 }
 
 

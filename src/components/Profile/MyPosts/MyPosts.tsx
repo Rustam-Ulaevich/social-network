@@ -1,18 +1,15 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostDataType} from "../../../Redux/state";
+import {ProfilePageType} from "../../../Redux/state";
 
 
 type PropsType = {
-    postData: Array<PostDataType>
+    state: ProfilePageType
 }
 
 export const MyPosts = (props: PropsType) => {
-
-    let postElements = props.postData.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
-
-    return (<div className={s.post}>
+   return (<div className={s.post}>
         <h3>My posts</h3>
         <div>
             <textarea/>
@@ -21,7 +18,8 @@ export const MyPosts = (props: PropsType) => {
             <button>Add post</button>
         </div>
         <div className={s.post}>
-            {postElements}
+            {props.state.postData.map
+            ( p => <Post id={p.id} message={p.message} likesCount={p .likesCount}/>)}
         </div>
     </div>)
 }

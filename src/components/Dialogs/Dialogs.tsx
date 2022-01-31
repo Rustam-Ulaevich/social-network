@@ -2,27 +2,20 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {DialogsItems} from "./DialogItem/DialogItem";
 import {Messages} from "./Messages/Messages";
-import {DialogsDataType, MessagesDataType} from "../../Redux/state";
+import {DialogsPageType} from "../../Redux/state";
 
-
-type DialogsType = {
-    dialogsData: Array<DialogsDataType>
-    messagesData: Array<MessagesDataType>
+type PropsType = {
+    state: DialogsPageType
 }
 
-export function Dialogs(props: DialogsType) {
-
-    let dialogs = props.dialogsData.map( d => <DialogsItems id={d.id} name={d.name}/>)
-
-    let messages = props.messagesData.map( m => <Messages message={m.message} id={m.id}/>
-    )
-
+export function Dialogs(props: PropsType) {
     return <div className={s.dialogs}>
         <div className={s.dialogsItems}>
-            {dialogs}
+            {props.state.dialogsData.map( d => <DialogsItems image={d.image} id={d.id} name={d.name}/>)}
         </div>
         <div className={s.messages}>
-            {messages}
+            {props.state.messagesData.map( m => <Messages message={m.message} id={m.id}/>
+            )}
         </div>
     </div>
 }
