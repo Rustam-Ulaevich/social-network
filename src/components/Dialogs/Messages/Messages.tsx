@@ -4,7 +4,20 @@ import {MessagesDataType} from "../../../Redux/state";
 
 
 export function Messages(props: MessagesDataType) {
-    return <div className={s.message}>***{props.message}</div>
+
+    let newMessagesText = React.createRef<HTMLTextAreaElement>()
+
+    function addMessages() {
+        let text = newMessagesText.current?.value
+        alert(text)
+    }
+
+
+    return <div>
+        <div className={s.message}>***{props.message}</div>
+        <textarea ref={newMessagesText}></textarea>
+        <button onClick={addMessages}>add message</button>
+    </div>
 }
 
 
