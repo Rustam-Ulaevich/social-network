@@ -9,10 +9,11 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {StateType} from "./Redux/state";
-
+import {addPost} from "./Redux/state";
 
 type AppType = {
     state: StateType
+    addPost: (postMessage: string) => void
   }
 
 function App(props: AppType) {
@@ -24,7 +25,7 @@ function App(props: AppType) {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path="/profile"
-                           element={<Profile postData={props.state.profilePage}/>} />
+                           element={<Profile postData={props.state.profilePage} addPost={props.addPost}/>} />
                     <Route path="/dialogs"
                            element={<Dialogs state={props.state.dialogsPage}/>} />
                     <Route path="/news" element={<News />} />
