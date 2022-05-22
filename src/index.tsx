@@ -1,11 +1,7 @@
-import React from 'react';
-
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {rerenderEntireTree} from "./render";
 import {state} from "./Redux/state";
 
-import {rerenderEntireTree} from "./render";
-
-rerenderEntireTree()
+rerenderEntireTree(state);
 
 reportWebVitals();

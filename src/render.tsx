@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {state} from "./Redux/state";
-import {addPost} from "./Redux/state";
+import {addPost, addTextPost, StateType} from "./Redux/state";
+import {BrowserRouter} from "react-router-dom";
 
-
-export let rerenderEntireTree = () => {
+export let rerenderEntireTree = (state: StateType) => {
     ReactDOM.render(<React.StrictMode>
-        <App state={state} addPost={addPost}/>
+        <App state={state}
+             addPost={addPost}
+             addTextPost={addTextPost}
+        />
     </React.StrictMode>, document.getElementById('root'));
 }
-reportWebVitals();
+// reportWebVitals();
