@@ -1,4 +1,10 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+
+}
+
+export const subscribe = (observer: ()= void ) => {
+    rerenderEntireTree = observer
+}
 
 export type PostDataType = {
     id: number
@@ -67,7 +73,6 @@ export let state = {
     sidebar: {}
 }
 
-
 export let addPost = () => {
     let newPost: PostDataType = {
         id: 5,
@@ -76,9 +81,11 @@ export let addPost = () => {
     }
     state.profilePage.postData.push(newPost);
     state.profilePage.textNewPost = ''
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 export let addTextPost = (textPost: string) => {
     state.profilePage.textNewPost = textPost;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
+
+
