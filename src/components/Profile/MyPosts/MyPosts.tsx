@@ -1,13 +1,14 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {addTextPost, PostDataType, ProfilePageType} from "../../../Redux/state";
+import {ActionsType, PostDataType, ProfilePageType} from "../../../Redux/state";
 
 type PropsType = {
     postData: Array<PostDataType>
     textNewPost: any
-    addPost: () => void
-    addTextPost: (textPost: any) => void
+    // addPost: () => void
+    // addTextPost: (textPost: any) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export const MyPosts = (props: PropsType) => {
@@ -17,13 +18,15 @@ export const MyPosts = (props: PropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
-        props.addPost()
+        props.dispatch({type: "ADD-POST", textNewPost: props.textNewPost})
         // props.addTextPost('')
     }
 
     let onPostChange = () => {
         let text = newPostElement.current?.value
-        props.addTextPost(text)
+        // props.addTextPost(text)
+        props.dispatch({type: 'ADD-TEXT-POST', textPost: props.textNewPost})
+
     }
 
 

@@ -1,5 +1,56 @@
-let store = {
-    _state {
+export type PostDataType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type DialogsDataType = {
+    id: number
+    name: string
+    image: string
+}
+export type MessagesDataType = {
+    id: number
+    message: string
+}
+export type ProfilePageType = {
+    postData: Array<PostDataType>
+    textNewPost: string
+}
+export type DialogsPageType = {
+    dialogsData: Array<DialogsDataType>
+    messagesData: Array<MessagesDataType>
+}
+export type SidebarType = {}
+export type StateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType
+}
+
+export type StoreType = {
+    _state: StateType
+    getState: () => StateType
+    addTextPost: (textPost: string) => void
+    addPost: (textNewPost: string) => void
+    _callSubscriber: () => void
+    subscribe: ( observer: () => void ) => void
+    dispatch: (action: ActionsType) => void
+}
+
+export type ActionsType = AddPostActionType | AddTextPostActionType
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+    textNewPost: string
+}
+type AddTextPostActionType = {
+    type: 'ADD-TEXT-POST'
+    textPost: string
+}
+
+
+let store: StoreType = {
+    _state: {
         profilePage: {
             postData: [
                 {
@@ -36,49 +87,52 @@ let store = {
         },
         sidebar: {}
     },
-    rerenderEntireTree() {
-        console.log('State changed');
+    getState() {
+        return  this._state
+    },
+    _callSubscriber() {
+        // console.log('State changed');
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST'){
+            const newPost: PostDataType = {
+                id: 5,
+                message: action.textNewPost,
+                likesCount: 0
+            };
+            this._state.profilePage.postData.push(newPost);
+            this._state.profilePage.textNewPost = '';
+            this._callSubscriber();
+        }
+        else if (action.type === 'ADD-TEXT-POST'){
+            this._state.profilePage.textNewPost = action.textPost;
+            this._callSubscriber();
+        }
+    },
+    addPost() {
+        let newPost = {
+            id: 5,
+            message: this._state.profilePage.textNewPost,
+            likesCount: 0
+        };
+        this._state.profilePage.postData.push(newPost);
+        this._state.profilePage.textNewPost = '';
+        this._callSubscriber();
     },
     addTextPost(textPost: string) {
-        state.profilePage.textNewPost = textPost;
-        rerenderEntireTree();
+        this._state.profilePage.textNewPost = textPost;
+        this._callSubscriber();
     },
+    subscribe(observer) {
+        this._callSubscriber = observer
+    }
 }
+
+export default store
+// window.store = store
 
 
 
-export const subscribe = (observer: ()= void ) => {
-    rerenderEntireTree = observer
-}
-
-export type PostDataType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export type DialogsDataType = {
-    id: number
-    name: string
-    image: string
-}
-export type MessagesDataType = {
-    id: number
-    message: string
-}
-export type ProfilePageType = {
-    postData: Array<PostDataType>
-    textNewPost: string
-}
-export type DialogsPageType = {
-    dialogsData: Array<DialogsDataType>
-    messagesData: Array<MessagesDataType>
-}
-export type SidebarType = {}
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType
-}
 
 
 
