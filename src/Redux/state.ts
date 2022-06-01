@@ -19,6 +19,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogsData: Array<DialogsDataType>
     messagesData: Array<MessagesDataType>
+    newMessageText: string
 }
 export type SidebarType = {}
 export type StateType = {
@@ -26,28 +27,22 @@ export type StateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-
 export type StoreType = {
     _state: StateType
     getState: () => StateType
-    addTextPost: (textPost: string) => void
     addPost: (textNewPost: string) => void
+    addTextPost: (textPost: string) => void
+    // addMessageText: (body: string) => void
     _callSubscriber: () => void
     subscribe: ( observer: () => void ) => void
     dispatch: (action: ActionsType) => void
 }
+export type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof addTextPostAC> | ReturnType<typeof addMessageTextAC> | ReturnType<typeof sendMessageTextAC>
 
-export type ActionsType = AddPostActionType | AddTextPostActionType
-
-type AddPostActionType = {
-    type: 'ADD-POST'
-    textNewPost: string
-}
-type AddTextPostActionType = {
-    type: 'ADD-TEXT-POST'
-    textPost: string
-}
-
+const ADD_POST = 'ADD-POST'
+const ADD_TEXT_POST = 'ADD-TEXT-POST'
+const ADD_MESSAGE_TEXT = 'ADD_MESSAGE_TEXT'
+const SEND_MESSAGE_TEXT = 'SEND_MESSAGE_TEXT'
 
 let store: StoreType = {
     _state: {
@@ -83,7 +78,8 @@ let store: StoreType = {
                 {id: 1, message: 'Ты купил хлеб?'},
                 {id: 2, message: 'Вылетело из головы'},
                 {id: 3, message: 'Дуй в магазин!!!'}
-            ]
+            ],
+            newMessageText: ''
         },
         sidebar: {}
     },
@@ -94,7 +90,7 @@ let store: StoreType = {
         // console.log('State changed');
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST'){
+        if (action.type === ADD_POST){
             const newPost: PostDataType = {
                 id: 5,
                 message: action.textNewPost,
@@ -104,8 +100,18 @@ let store: StoreType = {
             this._state.profilePage.textNewPost = '';
             this._callSubscriber();
         }
-        else if (action.type === 'ADD-TEXT-POST'){
+        else if (action.type === ADD_TEXT_POST){
             this._state.profilePage.textNewPost = action.textPost;
+            this._callSubscriber();
+        }
+        else if (action.type === ADD_MESSAGE_TEXT){
+            this._state.dialogsPage.newMessageText =action.body
+            this._callSubscriber();
+        }
+        else if (action.type === SEND_MESSAGE_TEXT){
+            let body = this._state.dialogsPage.newMessageText
+            this._state.dialogsPage.newMessageText = ''
+            this._state.dialogsPage.messagesData.push({id: 4, message: body})
             this._callSubscriber();
         }
     },
@@ -127,6 +133,14 @@ let store: StoreType = {
         this._callSubscriber = observer
     }
 }
+
+export const addPostAC = (textNewPost: string) => ({type: ADD_POST, textNewPost: textNewPost} as const)
+
+export const addTextPostAC = (textNewPost: string) => ({type: ADD_TEXT_POST, textPost: textNewPost} as const)
+
+export const addMessageTextAC = (body: string) => ({type: ADD_MESSAGE_TEXT, body: body} as const)
+
+export const sendMessageTextAC = () => ({type: SEND_MESSAGE_TEXT} as const)
 
 export default store
 // window.store = store
