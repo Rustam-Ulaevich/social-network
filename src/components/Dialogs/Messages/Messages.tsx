@@ -14,10 +14,10 @@ export function Messages(props: MessagesDataType) {
 
 
     return <div>
-        <div className={s.message}>***{props.message}</div>
-        <textarea ref={newMessagesText}></textarea>
-        <button onClick={addMessages}>add message</button>
+        <div className={s.message}>-{props.message}</div>
+        {/*<textarea ></textarea>*/}
+        {/*<button onClick={addMessages}>add message</button>*/}
     </div>
-}
+ }
 
 

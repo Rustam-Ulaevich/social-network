@@ -27,20 +27,22 @@ export function Dialogs(props: PropsType) {
         props.dispatch(addMessageTextAC(boby))
     }
 
-    return <div className={s.dialogs}>
+    return (
+        <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {props.state.dialogsData.map( d => <DialogsItems image={d.image} id={d.id} name={d.name}/>)}
             </div>
             <div className={s.messages}>
                 <div>{props.state.messagesData.map( m => <Messages message={m.message} id={m.id}/>)}</div>
                 <div>
-                <div><textarea value={newMessageBody}
-                               placeholder='Enter message'
-                               onChange={onNewMessageChange}>
+                    <div><textarea value={newMessageBody}
+                                   placeholder='Enter message'
+                                   onChange={onNewMessageChange}>
                     </textarea></div>
-                <div><button onClick={onSendMessageClick}>Send message</button></div>
-            </div>
+                    <div><button onClick={onSendMessageClick}>Send message</button></div>
+                </div>
             </div>
 
-    </div>
+        </div>
+    )
 }
