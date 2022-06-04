@@ -46,3 +46,4 @@ export const MyPosts = (props: PropsType) => {
         </div>
     </div>)
 }
+
