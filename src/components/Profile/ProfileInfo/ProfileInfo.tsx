@@ -1,11 +1,12 @@
 import React from "react";
 import s from './Profile.module.css'
+import keyboard from './banner-909710_1280.jpg'
 
 
 export function ProfileInfo() {
     return <div >
         <div>
-        <img src='https://cdn.pixabay.com/photo/2015/08/27/09/22/banner-909710_960_720.jpg'
+        <img src={keyboard}
              width={500} height={200}
         />
     </div>

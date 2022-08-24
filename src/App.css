@@ -1,8 +1,10 @@
 body {
+ 
   background-image: url("https://pcvector.ru/800/600/https/www.freegreatpicture.com/files/26/2783-blue-and-white-wallpaper.jpg");
 }
 
 .app-wrapper {
+
   display: grid;
   width: 100px;
   grid-template-areas:

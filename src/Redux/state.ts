@@ -44,7 +44,7 @@ export type StoreType = {
 export type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof addTextPostAC> | ReturnType<typeof addMessageTextAC> | ReturnType<typeof sendMessageTextAC>
 
 // @ts-ignore
-let store: StoreType = {
+let store: StoreType =  {
     _state: {
         profilePage: {
             postData: [
@@ -64,7 +64,7 @@ let store: StoreType = {
                     likesCount: 6241
                 }
             ],
-            textNewPost: 'Rustamchik',
+            textNewPost: '',
         },
         dialogsPage: {
             dialogsData: [

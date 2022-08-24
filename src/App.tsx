@@ -9,6 +9,7 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import store, {ActionsType, StateType} from "./Redux/state";
+import {DialogsContainer} from "./components/Dialogs/DialogsCotainer";
 
 
 type AppType = {
@@ -29,7 +30,7 @@ function App(props: AppType) {
                                              dispatch = {store.dispatch.bind(store)}
                            />}/>
                     <Route path="/dialogs"
-                           element={<Dialogs state={props.state.dialogsPage}
+                           element={<DialogsContainer state={props.state.dialogsPage}
                                              dispatch = {store.dispatch.bind(store)}
                            />} />
                     <Route path="/news" element={<News />} />

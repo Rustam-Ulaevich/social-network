@@ -16,8 +16,6 @@ let callSubscriber = (state: StateType) => {
 
 callSubscriber(store.getState());
 
-
-
 store.subscribe(() => {
     let state = store.getState()
     callSubscriber(state)

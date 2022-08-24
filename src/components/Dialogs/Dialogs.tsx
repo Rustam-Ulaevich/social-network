@@ -4,11 +4,14 @@ import {DialogsItems} from "./DialogItem/DialogItem";
 import {Messages} from "./Messages/Messages";
 import {ActionsType, DialogsPageType} from "../../Redux/state";
 import {addMessageTextAC, sendMessageTextAC} from "../../Redux/dialogs-reducer";
+
 import * as events from "events";
 
 type PropsType = {
-    state: DialogsPageType
-    dispatch: (action: ActionsType) => void
+    // state: DialogsPageType
+    // dispatch: (action: ActionsType) => void
+    addMessageText: (boby: string) => void;
+    sendMessage: string //   <--------------- правильно ли типизировал??????
 }
 
 export function Dialogs(props: PropsType) {
@@ -19,13 +22,14 @@ export function Dialogs(props: PropsType) {
         let text = newMessagesText.current?.value
     }
     let newMessageBody = props.state.newMessageText
-    const onSendMessageClick = () => {
-        props.dispatch(sendMessageTextAC())
-    }
-    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
 
-      let boby = e.target.value
-        props.dispatch(addMessageTextAC(boby))
+    const onSendMessageClick = () => {
+        props.sendMessage()
+    }
+
+    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let boby = e.target.value
+        props.addMessageText(boby)
     }
 
     return (

@@ -13,22 +13,20 @@ type PropsType = {
 }
 
 export const MyPosts = (props: PropsType) => {
-    let postElement = props.postData.map
-    ( p => <Post id={p.id} message={p.message} likesCount={p .likesCount}/>)
+
+    let postElement = props.postData.map( p =>
+        <Post id={p.id} message={p.message} likesCount={p .likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
         props.dispatch(addPostAC())
-        // props.addTextPost('')
     }
 
     let onPostChange = () => {
         // @ts-ignore
         let text = newPostElement.current.value
-        //props.addTextPost(text)
         props.dispatch(addTextPostAC(text))
-
     }
 
 
