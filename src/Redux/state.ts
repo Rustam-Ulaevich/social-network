@@ -18,7 +18,7 @@ export type MessagesDataType = {
 }
 export type ProfilePageType = {
     postData: Array<PostDataType>
-    textNewPost: string
+    newPostText: string
 }
 export type DialogsPageType = {
     dialogsData: Array<DialogsDataType>
@@ -64,7 +64,7 @@ let store: StoreType =  {
                     likesCount: 6241
                 }
             ],
-            textNewPost: '',
+            newPostText: '',
         },
         dialogsPage: {
             dialogsData: [
@@ -99,14 +99,10 @@ let store: StoreType =  {
 
         this._callSubscriber()
     },
-
     subscribe(observer) {
         this._callSubscriber = observer
     }
 }
-
-
-
 
 export default store
 // window.store = store

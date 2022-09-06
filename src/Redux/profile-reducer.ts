@@ -4,7 +4,7 @@ const ADD_POST = 'ADD-POST'
 const ADD_TEXT_POST = 'ADD-TEXT-POST'
 
 let initialState = {
-        postData: [
+    postData: [
             {
                 id: 1,
                 message: 'Hey, where is my money?',
@@ -21,22 +21,22 @@ let initialState = {
                 likesCount: 6241
             }
         ],
-        textNewPost: 'Rustamchik',
-    }
+    newPostText: 'Rustamchik'
+}
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             const newPost: PostDataType = {
                 id: 5,
-                message: state.textNewPost,
+                message: state.newPostText,
                 likesCount: 0
             }
             state.postData.push(newPost)
-            state.textNewPost = ''
+            state.newPostText = ''
             return state;
         case ADD_TEXT_POST:
-            state.textNewPost = action.text;
+            state.newPostText = action.text;
             return state;
         default:
             return state;
@@ -45,4 +45,5 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 
 export const addPostAC = () => ({type: ADD_POST} as const)
 
-export const addTextPostAC = (text: string) => ({type: ADD_TEXT_POST, text: text} as const)
+export const addTextPostAC = (text: string) =>
+    ({type: ADD_TEXT_POST, text: text} as const)
