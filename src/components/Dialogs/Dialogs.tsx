@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
 import {DialogsItems} from "./DialogItem/DialogItem";
 import {Messages} from "./Messages/Messages";
-import {ActionsType, DialogsPageType, StoreType} from "../../Redux/state";
+import {ActionsType, DialogsPageType, StoreType} from "../../Redux/store";
 import {addMessageTextAC, sendMessageTextAC} from "../../Redux/dialogs-reducer";
 
 import * as events from "events";
@@ -17,15 +17,9 @@ export function Dialogs(props: PropsType) {
 
     let state = props.dialogsPage
 
-    let dialogsElements = state.dialogsData.map( d => <DialogsItems image={d.image} id={d.id} name={d.name}/>)
-    let messageElements = state.messagesData.map( m => <Messages message={m.message} id={m.id}/>)
+    let dialogsElements = state.dialogsData.map( d => <DialogsItems key={d.id} image={d.image} id={d.id} name={d.name}/>)
+    let messageElements = state.messagesData.map( m => <Messages key={m.id} message={m.message} id={m.id}/>)
     let newMessageBody = state.newMessageText
-
-    //let newMessagesText = React.createRef<HTMLTextAreaElement>()
-
-    // function addMessages() {
-    //     let text = newMessagesText.current?.value
-    // }
 
     const onSendMessageClick = () => {
         props.sendMessage()
