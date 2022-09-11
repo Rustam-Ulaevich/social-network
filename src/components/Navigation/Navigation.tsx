@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Navigation.module.css';
 import {Friends} from "./Friends";
-import {DialogsPageType} from "../../Redux/state";
+import {DialogsPageType} from "../../Redux/store";
 
 
 export function  Navigation() {

@@ -11,8 +11,9 @@ import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsCotainer";
 
 
+
 type AppType = {
-    // store: StoreType
+    //store: StoreType
     // dispatch: (action: ActionsType) => void
   }
 

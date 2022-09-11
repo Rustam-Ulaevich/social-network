@@ -1,6 +1,6 @@
 import {DialogsItems} from "../Dialogs/DialogItem/DialogItem";
 import React from "react";
-import {DialogsPageType} from "../../Redux/state";
+import {DialogsPageType} from "../../Redux/store";
 
 type PropsType = {
 

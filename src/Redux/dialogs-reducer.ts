@@ -1,4 +1,4 @@
-import {ActionsType, DialogsPageType} from "./state";
+import {ActionsType, DialogsPageType} from "./store";
 
 const ADD_MESSAGE_TEXT = 'ADD_MESSAGE_TEXT'
 const SEND_MESSAGE_TEXT = 'SEND_MESSAGE_TEXT'
@@ -20,15 +20,25 @@ let initialState = {
 }
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsType): DialogsPageType => {
+
+    let stateCopy = {
+        ...state,
+        messagesData: [...state.messagesData]
+    }
     switch (action.type) {
+
         case ADD_MESSAGE_TEXT:
-            state.newMessageText =action.body
-            return state;
+            return {
+                ...state, newMessageText: action.body
+            }
+
         case SEND_MESSAGE_TEXT:
-            let body = state.newMessageText
-            state.newMessageText = ''
-            state.messagesData.push({id: 4, message: body})
-            return state;
+            return {
+                ...state,
+                newMessageText: ' ',
+                messagesData: [ ...state.messagesData, {id: 6, message: state.newMessageText}]
+            }
+
         default:
             return state;
     }
