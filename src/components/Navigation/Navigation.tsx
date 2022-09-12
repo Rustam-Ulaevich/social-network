@@ -23,6 +23,9 @@ export function  Navigation() {
             <div className={s.item}>
                 <NavLink to='../Settings' className = { navData => navData.isActive ? s.active : s.item }>Settings</NavLink>
             </div>
+            <div className={s.item}>
+                <NavLink to='../Users' className = { navData => navData.isActive ? s.active : s.item }>Users</NavLink>
+            </div>
             <div>
                 <Friends/>
             </div>
