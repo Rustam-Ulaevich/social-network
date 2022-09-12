@@ -9,22 +9,23 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsCotainer";
-
-
+import UsersContainer from "./components/Users/UsersContainer";
 
 type AppType = {
     //store: StoreType
     // dispatch: (action: ActionsType) => void
   }
 
-function App(props: AppType) {
+  function App(props: AppType) {
     return(
-    <BrowserRouter>
         <div className='app-wrapper'>
             <Header/>
             <Navigation/>
             <div className='app-wrapper-content'>
                 <Routes>
+                    <Route path="/users"
+                           element={<UsersContainer />}
+                    />
                     <Route path="/profile"
                            element={<Profile />}/>
                     <Route path="/dialogs"
@@ -35,7 +36,6 @@ function App(props: AppType) {
                 </Routes>
             </div>
         </div>
-    </BrowserRouter>
     )
 }
 

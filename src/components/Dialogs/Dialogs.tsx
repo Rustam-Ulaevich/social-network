@@ -2,18 +2,10 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
 import {DialogsItems} from "./DialogItem/DialogItem";
 import {Messages} from "./Messages/Messages";
-import {ActionsType, DialogsPageType, StoreType} from "../../Redux/store";
-import {addMessageTextAC, sendMessageTextAC} from "../../Redux/dialogs-reducer";
+import {DialogsPropsType} from "./DialogsCotainer";
 
-import * as events from "events";
 
-type PropsType = {
-    addMessageText: (body: string) => void;
-    sendMessage: any // string //   <--------------- правильно ли типизировал??????
-    dialogsPage: DialogsPageType
-}
-
-export function Dialogs(props: PropsType) {
+export function Dialogs(props: DialogsPropsType) {
 
     let state = props.dialogsPage
 

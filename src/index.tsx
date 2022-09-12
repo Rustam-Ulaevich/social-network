@@ -1,5 +1,4 @@
-// @ts-ignore
-import {store} from './redux/redux-store';
+import {store} from './Redux/redux-store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -9,8 +8,7 @@ import {StateType} from "./Redux/store";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 
-let rerenderEntireTree = (state: StateType) => {
-    // @ts-ignore
+let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -20,11 +18,10 @@ let rerenderEntireTree = (state: StateType) => {
         document.getElementById('root'));
 }
 
-//rerenderEntireTree(store.getState());
+rerenderEntireTree();
 
-// store.subscribe(() => {
-//     let state = store.getState()
-//     rerenderEntireTree(state)
-// });
+store.subscribe(() => {
+    rerenderEntireTree()
+});
 
 reportWebVitals();
