@@ -102,7 +102,6 @@ let store: StoreType = {
 }
 
 export default store
-// window.store = store
 
 
 

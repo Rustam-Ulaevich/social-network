@@ -4,10 +4,14 @@ const SET_USERS = 'SET_USERS'
 
 export type UserType = {
     id: number
-    photo: any
+    photos: {
+        small: string | null
+        large: string| null
+    }
     followed: boolean
     name: string
     status: string
+    uniqueUrlName: string |         null
     // location: {
     //     city: string
     //     country: string
@@ -16,10 +20,16 @@ export type UserType = {
 
 export type InitialUsersType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 let initialState: InitialUsersType = {
-    users: []
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 }
 
 type ActionsType =
@@ -56,7 +66,7 @@ export const usersReducer = (state: InitialUsersType = initialState, action: Act
 
         case SET_USERS:
             return {
-                ...state, users: [...state.users,]
+                ...state, users: [...action.users]
             }
 
         default:
@@ -68,4 +78,7 @@ export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
 
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
 
-export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
+export const setUsersAC = (users: Array<UserType>) => {
+
+    return ({type: SET_USERS, users} as const)
+}
